@@ -165,7 +165,9 @@
     height: 38px;
     border-radius: 9px;
     border: 1px solid rgba(255, 255, 255, 0.65);
-    background: rgba(252, 243, 225, 0.88);
+    background: rgba(252, 243, 225, 0.78);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     color: var(--ink-700);
     display: grid;
     place-items: center;
@@ -203,7 +205,9 @@
     padding-inline: 0.75rem;
     border-radius: 999px;
     border: 1px solid rgba(200, 146, 63, 0.55);
-    background: rgba(252, 243, 225, 0.9);
+    background: rgba(252, 243, 225, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     color: var(--ink-700);
     font-family: var(--font-sans);
     font-size: 0.74rem;
@@ -471,40 +475,37 @@
   }
 
   .hero-top-emblem {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-emblem-medallion {
+    position: relative;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle, rgba(255, 250, 240, 0.92) 0%, rgba(252, 243, 225, 0.55) 70%, transparent 100%);
+    border: 1px solid rgba(200, 146, 63, 0.45);
+    box-shadow:
+      0 8px 24px -6px rgba(74, 21, 27, 0.14),
+      inset 0 0 0 4px rgba(255, 250, 240, 0.65);
   }
 
   .ganesh-emblem {
-    width: 60px;
+    width: 48px;
     height: auto;
     filter: drop-shadow(0 2px 6px rgba(255, 250, 240, 0.9));
   }
 
-  .hero-blessing {
-    font-family: 'Tiro Devanagari Marathi', var(--font-serif);
-    font-size: 0.95rem;
-    color: var(--maroon-800);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.35rem;
-  }
-
-  .hero-shubh-vivah {
-    font-family: 'Amita', var(--font-display);
-    font-weight: 700;
-    font-size: clamp(2.2rem, 9vw, 2.6rem);
-    line-height: 1.15;
-    color: var(--maroon-600);
-    text-shadow: 0 2px 10px rgba(255, 250, 240, 0.9), 0 1px 0 rgba(200, 146, 63, 0.35);
-  }
-
   .hero-kicker {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--ink-700);
-    margin-bottom: 0.4rem;
+    font-family: var(--font-cinzel);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--maroon-800);
+    margin-bottom: 0.45rem;
   }
 
   /* Center Heart Divider (Reveals first in Screenshot 6, then full text in Screenshot 7) */
@@ -568,11 +569,24 @@
   }
 
   .couple-ampersand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 48%;
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.65rem;
-    color: var(--ink-700);
-    margin-block: 0.3rem;
+    font-size: 1.45rem;
+    color: var(--gold-800);
+    margin-block: 0.35rem;
+  }
+
+  .couple-ampersand::before,
+  .couple-ampersand::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200, 146, 63, 0.55), transparent);
   }
 
   /* Buttery Staggered Cascade for Hero Typography */
@@ -601,9 +615,11 @@
     color: var(--ink-900);
     padding: 0.55rem 1.3rem;
     border-radius: 999px;
-    background: rgba(252, 243, 225, 0.88);
+    background: rgba(252, 243, 225, 0.78);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(200, 146, 63, 0.48);
-    box-shadow: 0 6px 18px rgba(74, 21, 27, 0.12);
+    box-shadow: 0 8px 22px rgba(74, 21, 27, 0.12), inset 0 1px 0 rgba(255, 250, 240, 0.7);
   }
 
   .scroll-text {
@@ -731,7 +747,7 @@
     border-radius: 26px;
     padding: 2.15rem 1.4rem;
     text-align: center;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 250, 240, 0.85);
   }
 
   .ornate-card::before {
