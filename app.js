@@ -131,7 +131,7 @@ function initEntranceController() {
   function drawPearlBead(x, y, r) {
     ctx.save();
     // Subtle warm shadow
-    ctx.fillStyle = 'rgba(72, 52, 22, 0.28)';
+    ctx.fillStyle = 'rgba(90, 30, 30, 0.28)';
     ctx.beginPath();
     ctx.arc(x, y + 1.2, r, 0, Math.PI * 2);
     ctx.fill();
@@ -139,14 +139,78 @@ function initEntranceController() {
     // Pearl base body
     const grad = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, r * 0.1, x, y, r);
     grad.addColorStop(0, '#ffffff');
-    grad.addColorStop(0.45, '#f9f0de');
-    grad.addColorStop(0.82, '#d8c29d');
-    grad.addColorStop(1, '#9d8054');
+    grad.addColorStop(0.45, '#fff6e6');
+    grad.addColorStop(0.82, '#e3cba1');
+    grad.addColorStop(1, '#a87e47');
     ctx.fillStyle = grad;
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
+  }
+
+  /**
+   * Draws a vertical string of jasmine buds ending in a pink lotus drop + gold bead.
+   */
+  function drawJasmineStrand(x, yStart, length) {
+    if (length < 8) return;
+    ctx.save();
+    // Thread
+    ctx.strokeStyle = 'rgba(122, 60, 40, 0.55)';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(x, yStart);
+    ctx.lineTo(x, yStart + length);
+    ctx.stroke();
+
+    // Buds
+    const step = 6.2;
+    let i = 0;
+    for (let y = yStart + 3; y < yStart + length - 8; y += step, i++) {
+      const tilt = i % 2 === 0 ? 0.5 : -0.5;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(tilt);
+      const budGrad = ctx.createLinearGradient(-2.6, 0, 2.6, 0);
+      budGrad.addColorStop(0, '#e9dcc4');
+      budGrad.addColorStop(0.5, '#fffdf6');
+      budGrad.addColorStop(1, '#ddcdb0');
+      ctx.fillStyle = budGrad;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 2.5, 3.8, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      // Occasional tiny green leaf, like the card's garland
+      if (i % 5 === 2) {
+        ctx.fillStyle = '#5f7f3a';
+        ctx.beginPath();
+        ctx.ellipse(x + (tilt > 0 ? 4 : -4), y, 3.2, 1.4, tilt, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Pink lotus drop
+    const dy = yStart + length;
+    const lotusGrad = ctx.createLinearGradient(x, dy - 9, x, dy + 7);
+    lotusGrad.addColorStop(0, '#e9a0a5');
+    lotusGrad.addColorStop(0.55, '#c36169');
+    lotusGrad.addColorStop(1, '#8e2d33');
+    ctx.fillStyle = lotusGrad;
+    ctx.beginPath();
+    ctx.moveTo(x, dy - 9);
+    ctx.bezierCurveTo(x + 7, dy - 3, x + 6, dy + 5, x, dy + 7);
+    ctx.bezierCurveTo(x - 6, dy + 5, x - 7, dy - 3, x, dy - 9);
+    ctx.fill();
+    // Petal crease
+    ctx.strokeStyle = 'rgba(255, 230, 230, 0.55)';
+    ctx.lineWidth = 0.7;
+    ctx.beginPath();
+    ctx.moveTo(x, dy - 6);
+    ctx.lineTo(x, dy + 5);
+    ctx.stroke();
+    ctx.restore();
+
+    drawPearlBead(x, dy + 10, 2.4);
   }
 
   /**
@@ -205,7 +269,7 @@ function initEntranceController() {
 
       // Cast soft drop shadow from the inner curtain edge onto the courtyard behind it
       ctx.save();
-      ctx.fillStyle = `rgba(42, 31, 16, ${lerp(0.12, 0.22, openEase)})`;
+      ctx.fillStyle = `rgba(60, 14, 18, ${lerp(0.12, 0.22, openEase)})`;
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(innerTopX + 7, 0);
@@ -252,11 +316,11 @@ function initEntranceController() {
         const midX0 = (topX0 + waistX0) * 0.5;
         const midX1 = (topX1 + waistX1) * 0.5;
         const pleatGrad = ctx.createLinearGradient(midX0, 0, Math.max(midX0 + 2, midX1), 0);
-        pleatGrad.addColorStop(0, '#cbb798');
-        pleatGrad.addColorStop(0.22, '#ebe0cc');
-        pleatGrad.addColorStop(0.48, '#fcf8f0');
-        pleatGrad.addColorStop(0.76, '#e3d4bc');
-        pleatGrad.addColorStop(1, '#bfa987');
+        pleatGrad.addColorStop(0, '#6e1f26');
+        pleatGrad.addColorStop(0.22, '#8e2d33');
+        pleatGrad.addColorStop(0.48, '#b2424a');
+        pleatGrad.addColorStop(0.76, '#952f36');
+        pleatGrad.addColorStop(1, '#5e1a20');
 
         ctx.fillStyle = pleatGrad;
         ctx.beginPath();
@@ -271,7 +335,7 @@ function initEntranceController() {
         ctx.fill();
 
         // Subtle silk crease shadow line along the valley of each pleat
-        ctx.strokeStyle = 'rgba(158, 134, 98, 0.42)';
+        ctx.strokeStyle = 'rgba(50, 10, 14, 0.42)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(topX1, 0);
@@ -285,10 +349,10 @@ function initEntranceController() {
         ctx.save();
         ctx.globalAlpha = pilasterFade;
         const pilGrad = ctx.createLinearGradient(0, 0, 16, 0);
-        pilGrad.addColorStop(0, '#7d5e28');
-        pilGrad.addColorStop(0.4, '#e5cc94');
-        pilGrad.addColorStop(0.7, '#b5904b');
-        pilGrad.addColorStop(1, '#7a5b24');
+        pilGrad.addColorStop(0, '#8c5616');
+        pilGrad.addColorStop(0.4, '#f5db98');
+        pilGrad.addColorStop(0.7, '#c48c36');
+        pilGrad.addColorStop(1, '#6b3a12');
         ctx.fillStyle = pilGrad;
         ctx.fillRect(0, 0, 16, cssH);
         ctx.restore();
@@ -298,7 +362,7 @@ function initEntranceController() {
       if (openEase > 0.15) {
         ctx.save();
         ctx.globalAlpha = clamp01((openEase - 0.15) / 0.4);
-        ctx.strokeStyle = '#c4a262';
+        ctx.strokeStyle = '#e0a84a';
         ctx.lineWidth = 3.5;
         ctx.lineCap = 'round';
         ctx.beginPath();
@@ -349,7 +413,7 @@ function initEntranceController() {
         const xMid = (xStart + xEnd) * 0.5;
 
         // Soft shadow under swag
-        ctx.fillStyle = 'rgba(52, 38, 18, 0.16)';
+        ctx.fillStyle = 'rgba(60, 14, 18, 0.22)';
         ctx.beginPath();
         ctx.moveTo(xStart, 0);
         ctx.quadraticCurveTo(xMid, dipHeight + 7, xEnd, 0);
@@ -358,11 +422,11 @@ function initEntranceController() {
 
         // Silk swag body
         const swagGrad = ctx.createLinearGradient(xStart, 0, xEnd, dipHeight * 0.6);
-        swagGrad.addColorStop(0, '#dfd0b8');
-        swagGrad.addColorStop(0.3, '#f4ebdc');
-        swagGrad.addColorStop(0.5, isCenter ? '#fffcf6' : '#faf4e8');
-        swagGrad.addColorStop(0.72, '#eadcc6');
-        swagGrad.addColorStop(1, '#cbb696');
+        swagGrad.addColorStop(0, '#7b2c31');
+        swagGrad.addColorStop(0.3, '#9a333a');
+        swagGrad.addColorStop(0.5, isCenter ? '#b8474f' : '#aa3d45');
+        swagGrad.addColorStop(0.72, '#952f36');
+        swagGrad.addColorStop(1, '#6e1f26');
 
         ctx.fillStyle = swagGrad;
         ctx.beginPath();
@@ -373,14 +437,14 @@ function initEntranceController() {
 
         // Concentric internal silk drape fold highlights & shadows
         for (const ratio of [0.38, 0.62, 0.82]) {
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.62)';
+          ctx.strokeStyle = 'rgba(255, 214, 190, 0.28)';
           ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(lerp(xStart, xMid, 1 - ratio), 0);
           ctx.quadraticCurveTo(xMid, dipHeight * ratio, lerp(xEnd, xMid, 1 - ratio), 0);
           ctx.stroke();
 
-          ctx.strokeStyle = 'rgba(168, 142, 104, 0.48)';
+          ctx.strokeStyle = 'rgba(60, 12, 16, 0.42)';
           ctx.lineWidth = 1.3;
           ctx.beginPath();
           ctx.moveTo(lerp(xStart, xMid, 1 - ratio * 1.05), 0);
@@ -407,6 +471,17 @@ function initEntranceController() {
       drawScallopSwag(-8, cssW * 0.34, 86, false);
       drawScallopSwag(cssW * 0.66, cssW + 8, 86, false);
       drawScallopSwag(cssW * 0.29, cssW * 0.71, 108, true);
+
+      // Mogra (jasmine) strings with pink lotus drops, like the wedding card's top toran.
+      // Short strands at the swag junctions stay inside the hero's top padding;
+      // long strands hug the outer edges so they never cover the couple names.
+      const strandLen = (len) => len * valanceEase;
+      drawJasmineStrand(cssW * 0.315, 4, strandLen(62));
+      drawJasmineStrand(cssW * 0.685, 4, strandLen(62));
+      drawJasmineStrand(cssW * 0.035, 6, strandLen(cssH * 0.3));
+      drawJasmineStrand(cssW * 0.965, 6, strandLen(cssH * 0.3));
+      drawJasmineStrand(cssW * 0.075, 10, strandLen(cssH * 0.18));
+      drawJasmineStrand(cssW * 0.925, 10, strandLen(cssH * 0.18));
 
       ctx.restore();
     }
@@ -629,17 +704,91 @@ function initAmbientPetals() {
     { passive: true }
   );
 
-  const particles = Array.from({ length: 16 }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    r: 2 + Math.random() * 3.2,
-    vx: -0.2 + Math.random() * 0.4,
-    vy: 0.22 + Math.random() * 0.38,
-    angle: Math.random() * Math.PI * 2,
-    spin: (Math.random() - 0.5) * 0.012,
-    alpha: 0.24 + Math.random() * 0.4,
-    isPetal: Math.random() > 0.45,
-  }));
+  const PETAL_KINDS = ['rose', 'rose', 'rose', 'marigold', 'marigold', 'jasmine', 'mote'];
+  const ROSE_TONES = [
+    ['#b2424a', '#7b2c31'],
+    ['#c36169', '#952f36'],
+    ['#d9838a', '#a5353d'],
+  ];
+  const MARIGOLD_TONES = [
+    ['#f7c64f', '#e08a1e'],
+    ['#f2a93b', '#c96a12'],
+  ];
+
+  const particles = Array.from({ length: 22 }, () => {
+    const kind = PETAL_KINDS[Math.floor(Math.random() * PETAL_KINDS.length)];
+    const tones =
+      kind === 'rose'
+        ? ROSE_TONES[Math.floor(Math.random() * ROSE_TONES.length)]
+        : MARIGOLD_TONES[Math.floor(Math.random() * MARIGOLD_TONES.length)];
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: (kind === 'mote' ? 2 : 3.2) + Math.random() * 2.8,
+      vx: -0.2 + Math.random() * 0.4,
+      vy: 0.22 + Math.random() * 0.38,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.012,
+      flip: Math.random() * Math.PI * 2,
+      flipSpeed: 0.015 + Math.random() * 0.03,
+      alpha: kind === 'mote' ? 0.3 + Math.random() * 0.3 : 0.55 + Math.random() * 0.35,
+      kind,
+      tones,
+    };
+  });
+
+  function drawRosePetal(p) {
+    const r = p.r;
+    const g = ctx.createLinearGradient(0, -r * 1.4, 0, r * 1.2);
+    g.addColorStop(0, p.tones[0]);
+    g.addColorStop(1, p.tones[1]);
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    // Heart-ish rose petal: rounded top lobe narrowing to a base
+    ctx.moveTo(0, r * 1.2);
+    ctx.bezierCurveTo(r * 1.5, r * 0.4, r * 1.3, -r * 1.4, 0, -r * 0.9);
+    ctx.bezierCurveTo(-r * 1.3, -r * 1.4, -r * 1.5, r * 0.4, 0, r * 1.2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 220, 220, 0.35)';
+    ctx.lineWidth = 0.6;
+    ctx.beginPath();
+    ctx.moveTo(0, r * 1.0);
+    ctx.quadraticCurveTo(r * 0.2, 0, 0, -r * 0.6);
+    ctx.stroke();
+  }
+
+  function drawMarigoldPetal(p) {
+    const r = p.r;
+    const g = ctx.createLinearGradient(0, -r, 0, r);
+    g.addColorStop(0, p.tones[0]);
+    g.addColorStop(1, p.tones[1]);
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    // Frilled marigold petal edge
+    ctx.moveTo(-r * 0.9, r * 0.6);
+    ctx.quadraticCurveTo(-r * 1.1, -r * 0.6, -r * 0.5, -r * 0.9);
+    ctx.quadraticCurveTo(-r * 0.25, -r * 0.6, 0, -r * 1.0);
+    ctx.quadraticCurveTo(r * 0.25, -r * 0.6, r * 0.5, -r * 0.9);
+    ctx.quadraticCurveTo(r * 1.1, -r * 0.6, r * 0.9, r * 0.6);
+    ctx.quadraticCurveTo(0, r * 1.1, -r * 0.9, r * 0.6);
+    ctx.fill();
+  }
+
+  function drawJasmineBud(p) {
+    const r = p.r * 0.75;
+    const g = ctx.createLinearGradient(-r, 0, r, 0);
+    g.addColorStop(0, '#eadfc8');
+    g.addColorStop(0.5, '#fffdf6');
+    g.addColorStop(1, '#dccbab');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r * 0.7, r * 1.6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#7d9a4a';
+    ctx.beginPath();
+    ctx.ellipse(0, r * 1.5, r * 0.45, r * 0.35, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
   function renderFrame() {
     ctx.clearRect(0, 0, width, height);
@@ -647,6 +796,7 @@ function initAmbientPetals() {
       p.x += p.vx + Math.sin(p.angle) * 0.15;
       p.y += p.vy;
       p.angle += p.spin;
+      p.flip += p.flipSpeed;
 
       if (p.y > height + 12) {
         p.y = -10;
@@ -660,16 +810,17 @@ function initAmbientPetals() {
       ctx.rotate(p.angle);
       ctx.globalAlpha = p.alpha;
 
-      if (p.isPetal) {
-        ctx.fillStyle = '#f6dfda';
-        ctx.beginPath();
-        ctx.ellipse(0, 0, p.r * 1.35, p.r * 0.82, 0, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        ctx.fillStyle = '#e8cf96';
+      if (p.kind === 'mote') {
+        ctx.fillStyle = '#f2c34a';
         ctx.beginPath();
         ctx.arc(0, 0, p.r * 0.6, 0, Math.PI * 2);
         ctx.fill();
+      } else {
+        // Fake 3D tumble: squash horizontally as the petal flips in the air
+        ctx.scale(0.35 + 0.65 * Math.abs(Math.cos(p.flip)), 1);
+        if (p.kind === 'rose') drawRosePetal(p);
+        else if (p.kind === 'marigold') drawMarigoldPetal(p);
+        else drawJasmineBud(p);
       }
       ctx.restore();
     }
@@ -712,11 +863,11 @@ function initScratchHeart() {
     ctx.globalCompositeOperation = 'source-over';
 
     const grad = ctx.createLinearGradient(0, 0, width, height);
-    grad.addColorStop(0, '#be954b');
-    grad.addColorStop(0.24, '#f3e1b2');
-    grad.addColorStop(0.5, '#b3883e');
-    grad.addColorStop(0.76, '#f8e9c2');
-    grad.addColorStop(1, '#8b6523');
+    grad.addColorStop(0, '#c8923f');
+    grad.addColorStop(0.24, '#fbe3a6');
+    grad.addColorStop(0.5, '#c48c36');
+    grad.addColorStop(0.76, '#f5db98');
+    grad.addColorStop(1, '#8c5616');
 
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
@@ -732,7 +883,7 @@ function initScratchHeart() {
     }
 
     // Concentric Ornamental Mandala Rings on the Foil
-    ctx.strokeStyle = 'rgba(90, 64, 21, 0.32)';
+    ctx.strokeStyle = 'rgba(123, 44, 49, 0.38)';
     ctx.lineWidth = 1.4;
     ctx.beginPath();
     ctx.arc(width / 2, height / 2 - 12, 76, 0, Math.PI * 2);
@@ -745,7 +896,7 @@ function initScratchHeart() {
     ctx.setLineDash([]);
 
     // Non-spoiler invitation prompt inside the foil heart
-    ctx.fillStyle = '#4a3410';
+    ctx.fillStyle = '#5e1a20';
     ctx.font = '600 13.5px "Cinzel", Georgia, serif';
     ctx.textAlign = 'center';
     ctx.fillText('✨ SCRATCH HERE ✨', width / 2, height / 2 - 14);
@@ -769,7 +920,32 @@ function initScratchHeart() {
         vy: Math.sin(angle) * speed - 0.8,
         r: 1.8 + Math.random() * 2.4,
         alpha: 1,
-        color: Math.random() > 0.4 ? '#fffdf2' : '#e6c373',
+        color: Math.random() > 0.4 ? '#fff6e0' : '#f2c34a',
+      });
+    }
+    if (!dustRafId) {
+      dustRafId = requestAnimationFrame(stepGoldDust);
+    }
+  }
+
+  function emitRosePetals(x, y, count = 6) {
+    if (!pCtx) return;
+    const petalColors = ['#b2424a', '#c36169', '#952f36', '#e98990', '#f2c34a'];
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.1 + Math.random() * 2.8;
+      dustParticles.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 1.4,
+        r: 3.4 + Math.random() * 2.8,
+        alpha: 0.95,
+        color: petalColors[Math.floor(Math.random() * petalColors.length)],
+        isPetal: true,
+        rot: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.08,
+        flip: Math.random() * Math.PI * 2,
       });
     }
     if (!dustRafId) {
@@ -785,8 +961,20 @@ function initScratchHeart() {
       const p = dustParticles[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.04; // gentle gravity
-      p.alpha -= 0.028;
+
+      if (p.isPetal) {
+        // Petals drift: lighter gravity, air drag, sway and tumble, slower fade
+        p.vy += 0.025;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
+        p.x += Math.sin(p.rot) * 0.35;
+        p.rot += p.spin;
+        p.flip += 0.08;
+        p.alpha -= 0.0085;
+      } else {
+        p.vy += 0.04; // gentle gravity
+        p.alpha -= 0.028;
+      }
 
       if (p.alpha <= 0) {
         dustParticles.splice(i, 1);
@@ -796,11 +984,23 @@ function initScratchHeart() {
       pCtx.save();
       pCtx.globalAlpha = p.alpha;
       pCtx.fillStyle = p.color;
-      pCtx.shadowColor = '#d4af37';
-      pCtx.shadowBlur = 6;
-      pCtx.beginPath();
-      pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      pCtx.fill();
+      if (p.isPetal) {
+        const r = p.r;
+        pCtx.translate(p.x, p.y);
+        pCtx.rotate(p.rot);
+        pCtx.scale(0.35 + 0.65 * Math.abs(Math.cos(p.flip)), 1);
+        pCtx.beginPath();
+        pCtx.moveTo(0, r * 1.2);
+        pCtx.bezierCurveTo(r * 1.5, r * 0.4, r * 1.3, -r * 1.4, 0, -r * 0.9);
+        pCtx.bezierCurveTo(-r * 1.3, -r * 1.4, -r * 1.5, r * 0.4, 0, r * 1.2);
+        pCtx.fill();
+      } else {
+        pCtx.shadowColor = '#e0a84a';
+        pCtx.shadowBlur = 6;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pCtx.fill();
+      }
       pCtx.restore();
     }
 
@@ -896,10 +1096,13 @@ function initScratchHeart() {
     if (gcalQuickLinks) {
       gcalQuickLinks.hidden = false;
     }
-    // Celebratory sparkle burst across the heart
+    // Celebratory gold sparkle + rose-petal burst across the heart
     for (let i = 0; i < 6; i++) {
       setTimeout(() => {
-        emitGoldDust(80 + Math.random() * 160, 60 + Math.random() * 140, 8);
+        const bx = 80 + Math.random() * 160;
+        const by = 60 + Math.random() * 140;
+        emitGoldDust(bx, by, 8);
+        emitRosePetals(bx, by, 5);
       }, i * 60);
     }
   }

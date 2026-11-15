@@ -7,13 +7,19 @@
   <title>Wedding Invitation</title>
   <meta name="description" content="You are cordially invited to celebrate our wedding.">
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b5904b' d='M16 28C15.3 28 3 19.6 3 10.8C3 6.2 6.6 3 10.9 3C13.5 3 15.1 4.3 16 5.8C16.9 4.3 18.5 3 21.1 3C25.4 3 29 6.2 29 10.8C29 19.6 16.7 28 16 28Z'/%3E%3C/svg%3E">
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23952f36' d='M16 28C15.3 28 3 19.6 3 10.8C3 6.2 6.6 3 10.9 3C13.5 3 15.1 4.3 16 5.8C16.9 4.3 18.5 3 21.1 3C25.4 3 29 6.2 29 10.8C29 19.6 16.7 28 16 28Z'/%3E%3C/svg%3E">
 
   <!-- Resource Hints for Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Great+Vibes&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
+    rel="stylesheet">
+  <!-- Marathi display fonts, subset to only the glyphs used (keeps downloads tiny) -->
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@700&amp;text=शुभविवाह&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&amp;text=॥श्रीगजाननप्रसन्न&amp;display=swap"
     rel="stylesheet">
 
   <!-- Preload Critical LCP Visual Assets -->
@@ -23,10 +29,10 @@
   <!-- Inline Critical Above-the-Fold Styles -->
   <style>
     :root {
-      --bg-stage-outer: #1e241b;
-      --bg-parchment: #efe5d4;
-      --color-ink: #352b1e;
-      --color-gold: #b89655;
+      --bg-stage-outer: #260b0e;
+      --bg-parchment: #f5e6ca;
+      --color-ink: #4a151b;
+      --color-gold: #c8923f;
     }
 
     body {
@@ -59,23 +65,23 @@
       <!-- 3D Pearl Bead Radial Gradient -->
       <radialGradient id="pearl-grad" cx="35%" cy="30%" r="65%">
         <stop offset="0%" stop-color="#ffffff" />
-        <stop offset="42%" stop-color="#f9f1e1" />
-        <stop offset="78%" stop-color="#dac6a4" />
-        <stop offset="100%" stop-color="#9e8259" />
+        <stop offset="42%" stop-color="#fff6e6" />
+        <stop offset="78%" stop-color="#e3cba1" />
+        <stop offset="100%" stop-color="#a87e47" />
       </radialGradient>
 
       <!-- Antique Gold Metallic Gradient -->
       <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#d8be82" />
-        <stop offset="25%" stop-color="#f7e9c6" />
-        <stop offset="50%" stop-color="#b5904b" />
-        <stop offset="75%" stop-color="#ebd6a3" />
-        <stop offset="100%" stop-color="#876529" />
+        <stop offset="0%" stop-color="#e5bc6a" />
+        <stop offset="25%" stop-color="#fff0c9" />
+        <stop offset="50%" stop-color="#c48c36" />
+        <stop offset="75%" stop-color="#f5db98" />
+        <stop offset="100%" stop-color="#8c5616" />
       </linearGradient>
 
       <!-- Soft Drop Shadow for Door Plaque -->
       <filter id="plaque-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#11160d" flood-opacity="0.52" />
+        <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#2b080c" flood-opacity="0.56" />
       </filter>
 
       <!-- Ornate Corner Flourish for Cards -->
@@ -84,13 +90,13 @@
           stroke-linecap="round" />
         <path d="M 6,18 C 6,10 10,6 18,6" fill="none" stroke="url(#gold-grad)" stroke-width="1"
           stroke-linecap="round" />
-        <circle cx="5" cy="5" r="2" fill="#b5904b" />
+        <circle cx="5" cy="5" r="2" fill="#952f36" />
       </g>
 
       <!-- Reusable Ornate Royal Plaque -->
       <g id="ornate-door-plaque">
         <!-- Outer Scalloped Cartouche (100% Symmetrical) -->
-        <path filter="url(#plaque-shadow)" fill="#f3e9d6" stroke="url(#gold-grad)" stroke-width="2.6" d="M 150,18
+        <path filter="url(#plaque-shadow)" fill="#f6ead3" stroke="url(#gold-grad)" stroke-width="2.6" d="M 150,18
              C 168,18 176,30 192,34
              C 212,38 228,28 242,42
              C 256,56 248,74 256,92
@@ -136,7 +142,7 @@
              C 128,41 136,31 150,31 Z" />
 
         <!-- Baroque Scrollwork Flourishes -->
-        <path fill="none" stroke="#9b7839" stroke-width="1.6" stroke-linecap="round" d="M 116,50 C 130,62 140,44 150,44 C 160,44 170,62 184,50
+        <path fill="none" stroke="#952f36" stroke-width="1.6" stroke-linecap="round" d="M 116,50 C 130,62 140,44 150,44 C 160,44 170,62 184,50
              M 116,318 C 130,306 140,324 150,324 C 160,324 170,306 184,318
              M 54,138 C 66,154 54,170 54,184 C 54,198 66,214 54,230
              M 246,138 C 234,154 246,170 246,184 C 246,198 234,214 246,230
@@ -146,8 +152,8 @@
              M 224,302 C 212,308 206,296 216,288" />
 
         <!-- Top Botanical Motif -->
-        <g transform="translate(150, 118)" fill="#967334">
-          <path d="M 0,18 L 0,-16" stroke="#967334" stroke-width="1.4" />
+        <g transform="translate(150, 118)" fill="#8e2d33">
+          <path d="M 0,18 L 0,-16" stroke="#8e2d33" stroke-width="1.4" />
           <path d="M 0,-18 C -5,-10 -5,-3 0,2 C 5,-3 5,-10 0,-18 Z" />
           <path d="M 0,4 C -12,-4 -20,-2 -22,6 C -14,10 -6,8 0,4 Z" />
           <path d="M 0,4 C 12,-4 20,-2 22,6 C 14,10 6,8 0,4 Z" />
@@ -156,21 +162,21 @@
         </g>
 
         <!-- Dotted Gold Lines Above & Below Text -->
-        <line x1="86" y1="152" x2="214" y2="152" stroke="#b59252" stroke-width="1" stroke-dasharray="2 3" />
-        <circle cx="150" cy="152" r="2.5" fill="#967334" />
+        <line x1="86" y1="152" x2="214" y2="152" stroke="#c48c36" stroke-width="1" stroke-dasharray="2 3" />
+        <circle cx="150" cy="152" r="2.5" fill="#952f36" />
 
         <!-- TAP TO OPEN Typography -->
-        <text x="150" y="191" text-anchor="middle" fill="#634b21" font-family="'Cinzel', 'Cormorant Garamond', serif"
+        <text x="150" y="191" text-anchor="middle" fill="#7a2229" font-family="'Cinzel', 'Cormorant Garamond', serif"
           font-size="18.5" font-weight="600" letter-spacing="3.5">
           TAP TO OPEN
         </text>
 
-        <line x1="86" y1="214" x2="214" y2="214" stroke="#b59252" stroke-width="1" stroke-dasharray="2 3" />
-        <circle cx="150" cy="214" r="2.5" fill="#967334" />
+        <line x1="86" y1="214" x2="214" y2="214" stroke="#c48c36" stroke-width="1" stroke-dasharray="2 3" />
+        <circle cx="150" cy="214" r="2.5" fill="#952f36" />
 
         <!-- Bottom Botanical Motif -->
-        <g transform="translate(150, 250) scale(1, -1)" fill="#967334">
-          <path d="M 0,18 L 0,-16" stroke="#967334" stroke-width="1.4" />
+        <g transform="translate(150, 250) scale(1, -1)" fill="#8e2d33">
+          <path d="M 0,18 L 0,-16" stroke="#8e2d33" stroke-width="1.4" />
           <path d="M 0,-18 C -5,-10 -5,-3 0,2 C 5,-3 5,-10 0,-18 Z" />
           <path d="M 0,4 C -12,-4 -20,-2 -22,6 C -14,10 -6,8 0,4 Z" />
           <path d="M 0,4 C 12,-4 20,-2 22,6 C 14,10 6,8 0,4 Z" />
@@ -297,14 +303,14 @@
       <!-- SECTION 1: HERO (Matches Screenshots 6 & 7) -->
       <section class="hero-section" id="hero-section" aria-label="Couple Introduction">
         <div class="hero-inner">
-          <!-- Top Heart Icon (Matches Screenshot 7) -->
-          <div class="hero-top-emblem hero-cascade-item" style="--cascade-order: 2;" aria-hidden="true">
-            <svg viewBox="0 0 32 32" width="22" height="22">
-              <path fill="#2d3a24"
-                d="M16 27.5C15.4 27.5 4 19.6 4 11.2C4 6.9 7.4 3.8 11.4 3.8C13.8 3.8 15.2 5 16 6.4C16.8 5 18.2 3.8 20.6 3.8C24.6 3.8 28 6.9 28 11.2C28 19.6 16.6 27.5 16 27.5Z" />
-            </svg>
+          <!-- Ganesh Emblem + Blessing (from the wedding card) -->
+          <div class="hero-top-emblem hero-cascade-item" style="--cascade-order: 1;" aria-hidden="true">
+            <img src="assets/ganesh-emblem.webp" alt="" width="222" height="300" class="ganesh-emblem"
+              decoding="async">
           </div>
+          <p class="hero-blessing hero-cascade-item" style="--cascade-order: 1;" lang="mr">॥ श्री गजानन प्रसन्न ॥</p>
 
+          <p class="hero-shubh-vivah hero-cascade-item" style="--cascade-order: 2;" lang="mr">शुभ विवाह</p>
           <p class="hero-kicker hero-cascade-item" style="--cascade-order: 2;">We're getting married</p>
 
           <!-- Delicate Center Line with Tiny Heart (First element revealed in Screenshot 6!) -->
@@ -362,7 +368,7 @@
               <circle cx="180" cy="180" r="132" fill="none" stroke="url(#gold-grad)" stroke-width="1"
                 stroke-dasharray="2 5" opacity="0.6" />
               <!-- 16 Lotus Petals Ring -->
-              <g stroke="url(#gold-grad)" stroke-width="1.2" fill="rgba(247, 233, 198, 0.22)">
+              <g stroke="url(#gold-grad)" stroke-width="1.2" fill="rgba(233, 188, 107, 0.25)">
                 <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" />
                 <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(22.5 180 180)" />
                 <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(45 180 180)" />
@@ -438,7 +444,7 @@
                 fill="none" stroke="url(#gold-grad)" stroke-width="5.5" />
               <path
                 d="M160 265 C151 258 31 180 31 96 C31 54 64 25 106 25 C131 25 148 39 160 56 C172 39 189 25 214 25 C256 25 289 54 289 96 C289 180 169 258 160 265 Z"
-                fill="none" stroke="#d6be8a" stroke-width="1.5" stroke-dasharray="4 5" />
+                fill="none" stroke="#d9ac5e" stroke-width="1.5" stroke-dasharray="4 5" />
             </svg>
 
             <!-- Clipped Heart Area: Hidden Wedding Date + Gold Foil Scratch Canvas -->
