@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to celebrate our wedding.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b5904b' d='M16 28C15.3 28 3 19.6 3 10.8C3 6.2 6.6 3 10.9 3C13.5 3 15.1 4.3 16 5.8C16.9 4.3 18.5 3 21.1 3C25.4 3 29 6.2 29 10.8C29 19.6 16.7 28 16 28Z'/%3E%3C/svg%3E">
+
+  <!-- Resource Hints for Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Great+Vibes&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
+    rel="stylesheet">
+
+  <!-- Preload Critical LCP Visual Assets -->
+  <link rel="preload" as="image" href="assets/door-texture.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/courtyard-bg.jpg" fetchpriority="high">
+
+  <!-- Inline Critical Above-the-Fold Styles -->
+  <style>
+    :root {
+      --bg-stage-outer: #1e241b;
+      --bg-parchment: #efe5d4;
+      --color-ink: #352b1e;
+      --color-gold: #b89655;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-stage-outer);
+      color: var(--color-ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    .invitation-shell {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      min-height: 100dvh;
+      margin-inline: auto;
+      background-color: var(--bg-parchment);
+      overflow-x: clip;
+    }
+  </style>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="is-locked">
+
+  <!-- Shared SVG Defs: 3D Pearl Gradients, Gold Foil Gradients, Ornate Plaque Template, Corner Flourishes -->
+  <svg class="svg-defs" aria-hidden="true" width="0" height="0" focusable="false">
+    <defs>
+      <!-- 3D Pearl Bead Radial Gradient -->
+      <radialGradient id="pearl-grad" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#ffffff" />
+        <stop offset="42%" stop-color="#f9f1e1" />
+        <stop offset="78%" stop-color="#dac6a4" />
+        <stop offset="100%" stop-color="#9e8259" />
+      </radialGradient>
+
+      <!-- Antique Gold Metallic Gradient -->
+      <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#d8be82" />
+        <stop offset="25%" stop-color="#f7e9c6" />
+        <stop offset="50%" stop-color="#b5904b" />
+        <stop offset="75%" stop-color="#ebd6a3" />
+        <stop offset="100%" stop-color="#876529" />
+      </linearGradient>
+
+      <!-- Soft Drop Shadow for Door Plaque -->
+      <filter id="plaque-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#11160d" flood-opacity="0.52" />
+      </filter>
+
+      <!-- Ornate Corner Flourish for Cards -->
+      <g id="card-corner-ornament">
+        <path d="M 2,26 C 2,11 11,2 26,2" fill="none" stroke="url(#gold-grad)" stroke-width="1.6"
+          stroke-linecap="round" />
+        <path d="M 6,18 C 6,10 10,6 18,6" fill="none" stroke="url(#gold-grad)" stroke-width="1"
+          stroke-linecap="round" />
+        <circle cx="5" cy="5" r="2" fill="#b5904b" />
+      </g>
+
+      <!-- Reusable Ornate Royal Plaque -->
+      <g id="ornate-door-plaque">
+        <!-- Outer Scalloped Cartouche (100% Symmetrical) -->
+        <path filter="url(#plaque-shadow)" fill="#f3e9d6" stroke="url(#gold-grad)" stroke-width="2.6" d="M 150,18
+             C 168,18 176,30 192,34
+             C 212,38 228,28 242,42
+             C 256,56 248,74 256,92
+             C 264,108 278,116 278,136
+             C 278,154 264,166 264,184
+             C 264,202 278,214 278,232
+             C 278,252 264,260 256,276
+             C 248,294 256,312 242,326
+             C 228,340 212,330 192,334
+             C 176,338 168,350 150,350
+             C 132,350 124,338 108,334
+             C 88,330 72,340 58,326
+             C 44,312 52,294 44,276
+             C 36,260 22,252 22,232
+             C 22,214 36,202 36,184
+             C 36,166 22,154 22,136
+             C 22,116 36,108 44,92
+             C 52,74 44,56 58,42
+             C 72,28 88,38 108,34
+             C 124,30 132,18 150,18 Z" />
+
+        <!-- Inner Gold Filigree Scrollwork Border -->
+        <path fill="none" stroke="url(#gold-grad)" stroke-width="2" opacity="0.95" d="M 150,31
+             C 164,31 172,41 186,45
+             C 204,49 218,41 230,53
+             C 242,65 235,81 242,97
+             C 249,111 262,119 262,136
+             C 262,152 250,164 250,184
+             C 250,204 262,216 262,232
+             C 262,249 249,257 242,271
+             C 235,287 242,303 230,315
+             C 218,327 204,319 186,323
+             C 172,327 164,337 150,337
+             C 136,337 128,327 114,323
+             C 96,319 82,327 70,315
+             C 58,303 65,287 58,271
+             C 51,257 38,249 38,232
+             C 38,216 50,204 50,184
+             C 50,164 38,152 38,136
+             C 38,119 51,111 58,97
+             C 65,81 58,65 70,53
+             C 82,41 96,49 114,45
+             C 128,41 136,31 150,31 Z" />
+
+        <!-- Baroque Scrollwork Flourishes -->
+        <path fill="none" stroke="#9b7839" stroke-width="1.6" stroke-linecap="round" d="M 116,50 C 130,62 140,44 150,44 C 160,44 170,62 184,50
+             M 116,318 C 130,306 140,324 150,324 C 160,324 170,306 184,318
+             M 54,138 C 66,154 54,170 54,184 C 54,198 66,214 54,230
+             M 246,138 C 234,154 246,170 246,184 C 246,198 234,214 246,230
+             M 76,66 C 88,60 94,72 84,80
+             M 224,66 C 212,60 206,72 216,80
+             M 76,302 C 88,308 94,296 84,288
+             M 224,302 C 212,308 206,296 216,288" />
+
+        <!-- Top Botanical Motif -->
+        <g transform="translate(150, 118)" fill="#967334">
+          <path d="M 0,18 L 0,-16" stroke="#967334" stroke-width="1.4" />
+          <path d="M 0,-18 C -5,-10 -5,-3 0,2 C 5,-3 5,-10 0,-18 Z" />
+          <path d="M 0,4 C -12,-4 -20,-2 -22,6 C -14,10 -6,8 0,4 Z" />
+          <path d="M 0,4 C 12,-4 20,-2 22,6 C 14,10 6,8 0,4 Z" />
+          <path d="M 0,12 C -10,6 -16,9 -18,15 C -11,17 -5,15 0,12 Z" />
+          <path d="M 0,12 C 10,6 16,9 18,15 C 11,17 5,15 0,12 Z" />
+        </g>
+
+        <!-- Dotted Gold Lines Above & Below Text -->
+        <line x1="86" y1="152" x2="214" y2="152" stroke="#b59252" stroke-width="1" stroke-dasharray="2 3" />
+        <circle cx="150" cy="152" r="2.5" fill="#967334" />
+
+        <!-- TAP TO OPEN Typography -->
+        <text x="150" y="191" text-anchor="middle" fill="#634b21" font-family="'Cinzel', 'Cormorant Garamond', serif"
+          font-size="18.5" font-weight="600" letter-spacing="3.5">
+          TAP TO OPEN
+        </text>
+
+        <line x1="86" y1="214" x2="214" y2="214" stroke="#b59252" stroke-width="1" stroke-dasharray="2 3" />
+        <circle cx="150" cy="214" r="2.5" fill="#967334" />
+
+        <!-- Bottom Botanical Motif -->
+        <g transform="translate(150, 250) scale(1, -1)" fill="#967334">
+          <path d="M 0,18 L 0,-16" stroke="#967334" stroke-width="1.4" />
+          <path d="M 0,-18 C -5,-10 -5,-3 0,2 C 5,-3 5,-10 0,-18 Z" />
+          <path d="M 0,4 C -12,-4 -20,-2 -22,6 C -14,10 -6,8 0,4 Z" />
+          <path d="M 0,4 C 12,-4 20,-2 22,6 C 14,10 6,8 0,4 Z" />
+          <path d="M 0,12 C -10,6 -16,9 -18,15 C -11,17 -5,15 0,12 Z" />
+          <path d="M 0,12 C 10,6 16,9 18,15 C 11,17 5,15 0,12 Z" />
+        </g>
+
+        <!-- Top & Bottom 3D Pearl Clusters (Matches Screenshots 1 & 2) -->
+        <circle cx="150" cy="18" r="6.5" fill="url(#pearl-grad)" />
+        <circle cx="137" cy="23" r="5" fill="url(#pearl-grad)" />
+        <circle cx="163" cy="23" r="5" fill="url(#pearl-grad)" />
+        <circle cx="150" cy="350" r="6.5" fill="url(#pearl-grad)" />
+        <circle cx="137" cy="345" r="5" fill="url(#pearl-grad)" />
+        <circle cx="163" cy="345" r="5" fill="url(#pearl-grad)" />
+      </g>
+    </defs>
+  </svg>
+
+  <!-- Ambient Desktop Backdrop -->
+  <div class="desktop-ambient-bg" aria-hidden="true"></div>
+
+  <!-- Main Mobile-Proportioned Invitation Stage -->
+  <div class="invitation-shell" id="invitation-shell">
+
+    <!-- Top-Right Audio Toggle Button (Matches Screenshot Top-Right Speaker Button) -->
+    <button type="button" class="sound-toggle-btn" id="sound-toggle-btn" aria-pressed="false"
+      aria-label="Toggle wedding background music" title="Toggle traditional background music">
+      <svg class="icon-sound-off" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none"
+        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 5L6 9H2v6h4l5 4V5z" />
+        <line x1="23" y1="9" x2="17" y2="15" />
+        <line x1="17" y1="9" x2="23" y2="15" />
+      </svg>
+      <svg class="icon-sound-on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none"
+        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 5L6 9H2v6h4l5 4V5z" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      </svg>
+    </button>
+
+    <!-- Replay Entrance Animation Button -->
+    <button type="button" class="replay-entrance-btn" id="replay-entrance-btn"
+      aria-label="Replay door and curtain entrance animation" title="Replay Entrance Animation" hidden>
+      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10" />
+        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+      </svg>
+      <span>Replay</span>
+    </button>
+
+    <!-- ===================================================================
+         LAYER 1: FIXED ROYAL COURTYARD FOUNTAIN BACKDROP
+         =================================================================== -->
+    <div class="courtyard-backdrop" aria-hidden="true">
+      <img src="assets/courtyard-bg.jpg" alt="" width="1080" height="1920" fetchpriority="high" loading="eager"
+        class="courtyard-bg-img">
+      <canvas id="ambient-petals-canvas" class="ambient-petals-canvas"></canvas>
+    </div>
+
+    <!-- ===================================================================
+         LAYER 2: CONTINUOUS 60FPS 3D SILK PLEATED CURTAIN & PEARL SWAG CANVAS
+         Smoothly animates from Closed Curtain (Screenshots 2-3) -> Parting Arch
+         (Screenshots 4-5) -> Settled Top Scalloped Swags & Side Drapes (Screenshots 6-7)
+         =================================================================== -->
+    <div class="curtain-stage-layer" id="curtain-stage-layer" aria-hidden="true">
+      <canvas id="silk-curtain-canvas" class="silk-curtain-canvas"></canvas>
+    </div>
+
+    <!-- ===================================================================
+         LAYER 3: TRADITIONAL EMBOSSED SAGE-GREEN BOTANICAL DOUBLE DOOR
+         (Visible on initial load in Screenshot 1; splits & slides open on tap in Screenshot 2)
+         =================================================================== -->
+    <div class="entrance-doors" id="entrance-doors" role="dialog" aria-modal="true"
+      aria-label="Wedding Invitation Entrance Door">
+      <!-- Left Door Leaf -->
+      <div class="door-leaf door-leaf-left" id="door-leaf-left">
+        <div class="door-surface"></div>
+        <div class="door-center-seam"></div>
+      </div>
+
+      <!-- Right Door Leaf -->
+      <div class="door-leaf door-leaf-right" id="door-leaf-right">
+        <div class="door-surface"></div>
+        <div class="door-center-seam"></div>
+      </div>
+
+      <!-- Elevated Plaque Layer Above Both Doors (Zero shadow bar or seam when closed!) -->
+      <div class="door-plaque-stage" aria-hidden="true">
+        <!-- Unbroken Whole Plaque Shown When Closed -->
+        <div class="door-plaque-whole" id="door-plaque-whole">
+          <svg viewBox="0 0 300 368" width="264" height="324">
+            <use href="#ornate-door-plaque" />
+          </svg>
+        </div>
+
+        <!-- Split Halves Activated Only at the Moment the Doors Slide Apart -->
+        <div class="door-plaque-wing door-plaque-wing-left" id="plaque-wing-left">
+          <svg viewBox="0 0 300 368" width="264" height="324">
+            <use href="#ornate-door-plaque" />
+          </svg>
+        </div>
+        <div class="door-plaque-wing door-plaque-wing-right" id="plaque-wing-right">
+          <svg viewBox="0 0 300 368" width="264" height="324">
+            <use href="#ornate-door-plaque" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Interactive Hit Target Button Over the Plaque -->
+      <button type="button" class="door-open-trigger" id="door-open-trigger"
+        aria-label="Tap to open wedding invitation">
+        <span class="door-trigger-pulse" aria-hidden="true"></span>
+        <span class="visually-hidden">Tap to open wedding invitation</span>
+      </button>
+    </div>
+
+    <!-- ===================================================================
+         MAIN SCROLLABLE INVITATION CONTENT
+         =================================================================== -->
+    <main class="invitation-content" id="invitation-content">
+
+      <!-- SECTION 1: HERO (Matches Screenshots 6 & 7) -->
+      <section class="hero-section" id="hero-section" aria-label="Couple Introduction">
+        <div class="hero-inner">
+          <!-- Top Heart Icon (Matches Screenshot 7) -->
+          <div class="hero-top-emblem hero-cascade-item" style="--cascade-order: 2;" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="22" height="22">
+              <path fill="#2d3a24"
+                d="M16 27.5C15.4 27.5 4 19.6 4 11.2C4 6.9 7.4 3.8 11.4 3.8C13.8 3.8 15.2 5 16 6.4C16.8 5 18.2 3.8 20.6 3.8C24.6 3.8 28 6.9 28 11.2C28 19.6 16.6 27.5 16 27.5Z" />
+            </svg>
+          </div>
+
+          <p class="hero-kicker hero-cascade-item" style="--cascade-order: 2;">We're getting married</p>
+
+          <!-- Delicate Center Line with Tiny Heart (First element revealed in Screenshot 6!) -->
+          <div class="hero-heart-divider hero-line-first" aria-hidden="true">
+            <span class="divider-wing"></span>
+            <span class="divider-heart">♥</span>
+            <span class="divider-wing"></span>
+          </div>
+
+          <!-- Groom Block -->
+          <div class="couple-person hero-cascade-item" style="--cascade-order: 3;">
+            <h1 class="couple-name" id="groom-name">Siddhesh Laxman Bhande</h1>
+            <p class="couple-lineage" id="groom-lineage">
+              Son of Mr Laxman and Mrs Priyanka Bhande
+            </p>
+          </div>
+
+          <div class="couple-ampersand hero-cascade-item" style="--cascade-order: 4;" aria-hidden="true">&amp;</div>
+
+          <!-- Bride Block -->
+          <div class="couple-person hero-cascade-item" style="--cascade-order: 5;">
+            <h1 class="couple-name" id="bride-name">Nikita Dnyaneshwar Desai</h1>
+            <p class="couple-lineage" id="bride-lineage">
+              Daughter of Mr Dnyaneshwar and Mrs Trupti Desai
+            </p>
+          </div>
+        </div>
+
+        <!-- Scroll Down Indicator over Courtyard Fountain (Matches Screenshot 7) -->
+        <a href="#couple-portrait-section" class="scroll-down-indicator hero-cascade-item" style="--cascade-order: 6;"
+          aria-label="Scroll down to view invitation details">
+          <span class="scroll-text">SCROLL</span>
+          <svg class="scroll-chevron" viewBox="0 0 24 14" width="18" height="11" aria-hidden="true" fill="none"
+            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 3 12 11 20 3" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- =================================================================
+           SECTION 1.5: ROYAL COUPLE PORTRAIT SHOWCASE (SIDDHESH & NIKITA)
+           Uses the transparent-background `assets/couple_image.png` framed
+           by an animated Golden Mandala Halo & Royal Arch Pedestal
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="couple-portrait-section"
+        aria-label="Siddhesh and Nikita Portrait">
+        <div class="couple-showcase-stage">
+          <!-- Rotating Sacred Golden Mandala Halo Behind the Couple -->
+          <div class="couple-mandala-halo" aria-hidden="true">
+            <svg viewBox="0 0 360 360" class="mandala-svg">
+              <circle cx="180" cy="180" r="168" fill="none" stroke="url(#gold-grad)" stroke-width="1.2"
+                stroke-dasharray="4 6" opacity="0.7" />
+              <circle cx="180" cy="180" r="150" fill="none" stroke="url(#gold-grad)" stroke-width="1.8"
+                opacity="0.65" />
+              <circle cx="180" cy="180" r="132" fill="none" stroke="url(#gold-grad)" stroke-width="1"
+                stroke-dasharray="2 5" opacity="0.6" />
+              <!-- 16 Lotus Petals Ring -->
+              <g stroke="url(#gold-grad)" stroke-width="1.2" fill="rgba(247, 233, 198, 0.22)">
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(22.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(45 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(67.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(90 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(112.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(135 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(157.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(180 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(202.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(225 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(247.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(270 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(292.5 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(315 180 180)" />
+                <path d="M180,14 C194,38 194,62 180,86 C166,62 166,38 180,14 Z" transform="rotate(337.5 180 180)" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Royal Arch Frame & Transparent Couple Illustration -->
+          <div class="couple-arch-frame">
+            <img src="assets/couple_image.png" alt="Siddhesh and Nikita in traditional Indian wedding attire"
+              width="1696" height="2528" decoding="async" class="couple-portrait-img">
+          </div>
+
+          <!-- Sculpted Ribbon Pedestal Overlapping the Bottom Cutout Edge -->
+          <div class="couple-ribbon-pedestal">
+            <p class="couple-ribbon-names">Siddhesh <span class="ribbon-heart" aria-hidden="true">♥</span> Nikita</p>
+            <p class="couple-ribbon-quote">“Two souls, one heart, forever intertwined”</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SECTION 2: SAVE THE DATE — SCRATCH-OFF HEART + SAVE BUTTON ONLY
+           - Zero date spoilers before scratching!
+           - Heart reveals ONLY the wedding date (January 2, 2027).
+           - Detailed schedule is placed AFTER this section.
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="save-the-date-section"
+        aria-labelledby="save-date-heading">
+        <div class="ornate-card">
+          <svg class="corner-ornament corner-tl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-tr" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-bl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-br" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+
+          <div class="card-flourish-top" aria-hidden="true">
+            <span>───</span> <span class="flourish-gem">❖</span> <span>───</span>
+          </div>
+
+          <p class="section-eyebrow">Auspicious Celebration</p>
+          <h2 class="section-heading" id="save-date-heading">Save the Date</h2>
+          <p class="section-subtitle" id="scratch-instruction">
+            Scratch the golden heart below to reveal our wedding date
+          </p>
+
+          <!-- Interactive Heart Scratch-Off Stage -->
+          <div class="scratch-heart-stage" id="scratch-heart-stage">
+            <!-- Decorative Pearl & Gold Outer Heart Ring -->
+            <svg class="heart-frame-svg" viewBox="0 0 320 295" aria-hidden="true">
+              <path
+                d="M160 274 C150 266 22 184 22 96 C22 48 60 16 106 16 C133 16 149 30 160 47 C171 30 187 16 214 16 C260 16 298 48 298 96 C298 184 170 266 160 274 Z"
+                fill="none" stroke="url(#gold-grad)" stroke-width="5.5" />
+              <path
+                d="M160 265 C151 258 31 180 31 96 C31 54 64 25 106 25 C131 25 148 39 160 56 C172 39 189 25 214 25 C256 25 289 54 289 96 C289 180 169 258 160 265 Z"
+                fill="none" stroke="#d6be8a" stroke-width="1.5" stroke-dasharray="4 5" />
+            </svg>
+
+            <!-- Clipped Heart Area: Hidden Wedding Date + Gold Foil Scratch Canvas -->
+            <div class="heart-clip-box" id="heart-clip-box">
+              <!-- Hidden Date Content Underneath the Foil:
+                   Strictly hidden (is-concealed) until the user starts scratching,
+                   and shows ONLY the wedding date! -->
+              <div class="heart-revealed-content is-concealed" id="heart-revealed-content">
+                <span class="revealed-month-label">JANUARY</span>
+                <span class="revealed-day-number">02</span>
+                <span class="revealed-year-number">2027</span>
+                <span class="revealed-weekday-time">Saturday • 12:32 PM</span>
+              </div>
+
+              <!-- Interactive Gold Foil Scratch Canvas -->
+              <canvas id="scratch-heart-canvas" class="scratch-heart-canvas" width="300" height="276"
+                aria-label="Scratch-off golden heart hiding the wedding date"></canvas>
+            </div>
+
+            <!-- 60fps Canvas for Floating Gold Foil Dust & Sparkles -->
+            <canvas id="scratch-particles-canvas" class="scratch-particles-canvas" width="320" height="295"
+              aria-hidden="true"></canvas>
+          </div>
+
+          <p class="scratch-status-text" id="scratch-progress-label" role="status" aria-live="polite">
+            ✨ Swipe your finger across the heart to scratch
+          </p>
+
+          <!-- Save the Date Button (Automatically adds 1st Jan Haldi & Sangeet + 2nd Jan Wedding & Reception to Calendar) -->
+          <div class="calendar-actions">
+            <button type="button" class="primary-gold-btn" id="save-to-calendar-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <path d="M9 16l2 2 4-4" />
+              </svg>
+              <span>Save the Date</span>
+            </button>
+
+            <!-- Subtle Calendar App Links (Revealed after clicking Save the Date or scratching the heart) -->
+            <div class="gcal-quick-links" id="gcal-quick-links" hidden>
+              <a href="#" id="gcal-day1-link" target="_blank" rel="noopener noreferrer" class="secondary-pill-link">
+                + Google Calendar (1st Jan: Haldi &amp; Sangeet)
+              </a>
+              <a href="#" id="gcal-day2-link" target="_blank" rel="noopener noreferrer" class="secondary-pill-link">
+                + Google Calendar (2nd Jan: Wedding &amp; Reception)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SECTION 3: LIVE COUNTDOWN TIMER
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="countdown-section"
+        aria-labelledby="countdown-heading">
+        <div class="ornate-card countdown-card">
+          <svg class="corner-ornament corner-tl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-tr" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-bl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-br" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+
+          <p class="section-eyebrow">Counting Down Every Moment</p>
+          <h2 class="section-heading" id="countdown-heading">Until the Auspicious Muhurat</h2>
+
+          <div class="countdown-grid" role="timer" aria-label="Countdown to the auspicious wedding ceremony">
+            <div class="countdown-arch">
+              <span class="countdown-num" id="cd-days">00</span>
+              <span class="countdown-unit">Days</span>
+            </div>
+            <div class="countdown-arch">
+              <span class="countdown-num" id="cd-hours">00</span>
+              <span class="countdown-unit">Hours</span>
+            </div>
+            <div class="countdown-arch">
+              <span class="countdown-num" id="cd-minutes">00</span>
+              <span class="countdown-unit">Minutes</span>
+            </div>
+            <div class="countdown-arch">
+              <span class="countdown-num" id="cd-seconds">00</span>
+              <span class="countdown-unit">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SECTION 4: DETAILED WEDDING CEREMONY SCHEDULE
+           (Shown after Save the Date & Countdown)
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="schedule-section"
+        aria-labelledby="schedule-heading">
+        <div class="ornate-card schedule-card">
+          <svg class="corner-ornament corner-tl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-tr" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-bl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-br" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+
+          <div class="card-flourish-top" aria-hidden="true">
+            <span>───</span> <span class="flourish-gem">❈</span> <span>───</span>
+          </div>
+
+          <h2 class="schedule-banner-heading" id="schedule-heading">
+            || Wedding Ceremony Schedule ||
+          </h2>
+
+          <!-- Day 1: Friday, January 1, 2027 -->
+          <div class="schedule-day-group">
+            <div class="schedule-day-ribbon">
+              <h3>Friday, January 1, 2027</h3>
+            </div>
+
+            <ol class="ceremony-timeline">
+              <!-- Engagement (Sakharpuda) -->
+              <li class="timeline-item">
+                <div class="timeline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <circle cx="12" cy="18" r="6" />
+                    <circle cx="20" cy="18" r="6" />
+                    <path d="M12 12 L9 8 L15 8 Z" />
+                  </svg>
+                </div>
+                <div class="timeline-body">
+                  <h4 class="ceremony-title">Engagement (Sakharpuda)</h4>
+                  <p class="ceremony-time">11:00 AM</p>
+                </div>
+              </li>
+
+              <!-- Haldi Ceremony -->
+              <li class="timeline-item">
+                <div class="timeline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M6 16 C6 23 11 26 16 26 C21 26 26 23 26 16 Z" />
+                    <path d="M9 16 C10 11 13 9 16 9 C19 9 22 11 23 16" />
+                    <circle cx="16" cy="6" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+                <div class="timeline-body">
+                  <h4 class="ceremony-title">Haldi Ceremony</h4>
+                  <p class="ceremony-time">4:00 PM</p>
+                </div>
+              </li>
+
+              <!-- Tel (Oil) Ceremony -->
+              <li class="timeline-item">
+                <div class="timeline-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M16 5 C19 9 19 13 16 15 C13 13 13 9 16 5 Z" />
+                    <path d="M7 18 L25 18 C24 24 20 27 16 27 C12 27 8 24 7 18 Z" />
+                  </svg>
+                </div>
+                <div class="timeline-body">
+                  <h4 class="ceremony-title">Tel (Oil) Ceremony</h4>
+                  <p class="ceremony-time">7:00 PM</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="schedule-divider" aria-hidden="true">
+            <span>─────</span> <span>♥</span> <span>─────</span>
+          </div>
+
+          <!-- Day 2: Auspicious Wedding -->
+          <div class="auspicious-wedding-highlight">
+            <div class="auspicious-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M8 32 L32 32" />
+                <path d="M12 32 L12 16 L20 9 L28 16 L28 32" />
+                <path d="M20 18 C22.5 21 22.5 24 20 26 C17.5 24 17.5 21 20 18 Z" />
+              </svg>
+            </div>
+            <h3 class="auspicious-title">Auspicious Wedding</h3>
+            <p class="auspicious-datetime">Saturday, January 2, 2027 • 12:32 PM</p>
+
+            <div class="schedule-venue-callout">
+              <p class="schedule-venue-label">Wedding Venue</p>
+              <p class="schedule-venue-address">
+                Kalpana River Villa, Khutghar, Shahapur, Maharashtra 421601
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SECTION 5: VENUE DETAILS & GOOGLE MAP
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="venue-section" aria-labelledby="venue-heading">
+        <div class="ornate-card venue-card">
+          <svg class="corner-ornament corner-tl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-tr" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-bl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-br" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+
+          <div class="card-flourish-top" aria-hidden="true">
+            <span>───</span> <span class="flourish-gem">❖</span> <span>───</span>
+          </div>
+
+          <p class="section-eyebrow">Where Forever Begins</p>
+          <h2 class="section-heading" id="venue-heading">Wedding Venue</h2>
+
+          <div class="venue-details-block">
+            <h3 class="venue-name">Kalpana River Villa</h3>
+            <p class="venue-full-address">
+              Khutghar, Shahapur, Maharashtra 421601
+            </p>
+          </div>
+
+          <!-- Small Embedded Google Map Box -->
+          <div class="venue-map-frame">
+            <iframe
+              src="https://www.google.com/maps?q=Kalpana+River+Villa,+Khutghar,+Shahapur,+Maharashtra+421601&amp;output=embed"
+              width="360" height="210" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Google Map of Kalpana River Villa, Khutghar, Shahapur, Maharashtra 421601"
+              class="venue-map-iframe"></iframe>
+          </div>
+
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Kalpana+River+Villa,+Khutghar,+Shahapur,+Maharashtra+421601"
+            target="_blank" rel="noopener noreferrer" class="primary-gold-btn venue-map-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>View on Google Maps</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SECTION 6: RSVP FORM (GOOGLE SHEETS INTEGRATED, ALL OPTIONAL)
+           ================================================================= -->
+      <section class="invitation-section scroll-reveal-section" id="rsvp-section" aria-labelledby="rsvp-heading">
+        <div class="ornate-card rsvp-card">
+          <svg class="corner-ornament corner-tl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-tr" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-bl" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+          <svg class="corner-ornament corner-br" viewBox="0 0 30 30" aria-hidden="true">
+            <use href="#card-corner-ornament" />
+          </svg>
+
+          <div class="card-flourish-top" aria-hidden="true">
+            <span>───</span> <span class="flourish-gem">❦</span> <span>───</span>
+          </div>
+
+          <p class="section-eyebrow">Your Presence is Our Blessing</p>
+          <h2 class="section-heading" id="rsvp-heading">RSVP</h2>
+          <p class="section-subtitle">
+            All fields are optional, and you can modify your response anytime.
+          </p>
+
+          <form id="rsvp-form" aria-labelledby="rsvp-heading" action="#" method="POST" novalidate>
+            <!-- 1. Name (Optional) -->
+            <div class="form-field">
+              <label for="rsvp-name" class="field-label">
+                Your Name <span class="optional-tag">(Optional)</span>
+              </label>
+              <input type="text" id="rsvp-name" name="name" autocomplete="name" enterkeyhint="next"
+                placeholder="e.g., Rahul &amp; Priya" class="text-input">
+            </div>
+
+            <!-- 2. Guest Count Including Respondent (Optional) -->
+            <div class="form-field">
+              <label for="rsvp-guests" class="field-label">
+                Number of Guests (Including You) <span class="optional-tag">(Optional)</span>
+              </label>
+              <div class="guest-stepper-row">
+                <button type="button" class="stepper-btn" id="guest-dec-btn"
+                  aria-label="Decrease guest count">−</button>
+                <input type="text" inputmode="numeric" id="rsvp-guests" name="guestCount" placeholder="e.g., 2"
+                  enterkeyhint="next" class="text-input guest-count-input">
+                <button type="button" class="stepper-btn" id="guest-inc-btn"
+                  aria-label="Increase guest count">+</button>
+              </div>
+            </div>
+
+            <!-- 3. Food Preference: Single reversible "Veg only" checkbox (Optional) -->
+            <div class="form-field">
+              <span class="field-label">
+                Dietary Preference <span class="optional-tag">(Optional)</span>
+              </span>
+              <div class="radio-card-option veg-only-card">
+                <input type="checkbox" id="food-veg" name="foodPreference" value="Vegetarian Only" class="checkbox-input">
+                <label for="food-veg" class="radio-card-label">
+                  <span class="food-veg-badge" aria-hidden="true">
+                    <span class="food-dot food-dot-veg"></span>
+                  </span>
+                  <span>Veg only</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 4. When They Plan to Come (Optional) -->
+            <fieldset class="form-fieldset">
+              <legend class="field-label">
+                When Do You Plan to Arrive? <span class="optional-tag">(Optional)</span>
+              </legend>
+              <div class="arrival-options-grid">
+                <div class="radio-card-option">
+                  <input type="radio" id="arrive-jan2" name="arrivalPlan" value="Arriving on the wedding day"
+                    class="radio-input">
+                  <label for="arrive-jan2" class="radio-card-label">
+                    <span>Arriving on the wedding day (2nd Jan)</span>
+                  </label>
+                </div>
+                <div class="radio-card-option">
+                  <input type="radio" id="arrive-jan1" name="arrivalPlan" value="Arriving one day prior"
+                    class="radio-input">
+                  <label for="arrive-jan1" class="radio-card-label">
+                    <span>Arriving one day prior (1st Jan • Haldi &amp; Sangeet)</span>
+                  </label>
+                </div>
+                <div class="radio-card-option">
+                  <input type="radio" id="arrive-early" name="arrivalPlan" value="Arriving two or more days prior"
+                    class="radio-input">
+                  <label for="arrive-early" class="radio-card-label">
+                    <span>Arriving two or more days prior</span>
+                  </label>
+                </div>
+              </div>
+              <div class="arrival-custom-row">
+                <label for="rsvp-custom-arrival" class="field-sub-label">Or share your arrival note / travel details:</label>
+                <input type="text" id="rsvp-custom-arrival" name="arrivalNote" enterkeyhint="done"
+                  placeholder="e.g., Joining with family from afternoon" class="text-input">
+              </div>
+            </fieldset>
+
+            <!-- Submit / Update Action -->
+            <button type="submit" class="primary-gold-btn rsvp-submit-btn" id="rsvp-submit-btn">
+              <span id="rsvp-submit-text">Send RSVP</span>
+            </button>
+
+            <!-- Live Submission Feedback Status -->
+            <div class="rsvp-status-msg" id="rsvp-status-msg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer positioned cleanly between the cypress trees and above the courtyard fountain -->
+      <footer class="invitation-footer">
+        <div class="footer-blessing-badge">
+          <p class="footer-blessing">With love &amp; blessings<br>from both families</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script defer src="app.js"></script>
+</body>
+
+</html>
